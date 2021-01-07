@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
+
+    <title>Houser</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/HouseList.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="cal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment Calculator</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 120,000,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down1" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year1" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation1(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation1(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation1(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="cal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 40,000,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down2" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year2" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation2(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation2(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation2(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment2"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="cal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 6,700,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down3" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year3" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation3(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation3(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation3(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment3"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="modal fade" id="cal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 5,400,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down4" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year4" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation4(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation4(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation4(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment4"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 -->
+    <div class="modal fade" id="cal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 9,400,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down5" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year5" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation5(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation5(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation5(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment5"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6 -->
+    <div class="modal fade" id="cal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>ราคาบ้าน : 4,400,000 บาท</h5>
+                        <h5>เงินดาวน์ : <input id="down6" value="100000" type="number"> บาท</h5>
+                        <h5>ระยะเวลาผ่อนกี่ปี (มากสุด30ปี) : <input id="year6" value="5" type="number"> ปี</h5>
+                    </div>
+                    <h5>อัตราดอกเบี้ย
+                        <div class="btn-group mr-2" role="group" aria-label="3 group">
+                            <button type="button" class="btn btn-secondary" value="0%"
+                                onClick="calculation6(0)">0%</button>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="4 group">
+                            <button type="button" class="btn btn-secondary" value="4%"
+                                onClick="calculation6(4)">4%</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="5 group">
+                            <button type="button" class="btn btn-secondary" value="8%"
+                                onClick="calculation6(8)">8%</button>
+                        </div>
+                    </h5>
+                    <h5>อัตราการผ่อนชำระต่อเดือน</h5>
+                    <h3 id="payment6"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">Houser</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link" href="HouseList.html">House List</a>
+                    <a class="nav-link" href="#">Contact</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Available Houses</h1>
+                <p class="lead text-muted">Houser will make sure that you will get your dream house right away. With the
+                    help of finance tool with we have. Your house is waiting. Now don't let your dream with any longer.
+                    Its time to let it be your present.</p>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">สายไหม, กรุงเทพ</h5>
+                                <p class="card-text">ขนาด 350 ตร.วา
+                                    - พื้นที่ 800 ตรม.
+                                    - ชนิด 9 ห้องนอน 12 ห้องน้ำ
+                                    - จำนวน 2 ชั้น</p>
+                                <h3 class="card-subtitle mb-2 text-muted">120,000,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal1">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">ลุมพินี, ปทุมวัน, กรุงเทพ</h5>
+                                <p class="card-text">ทาวน์โฮม 4 ชั้น
+                                    - ขนาด 28 ตรว.
+                                    - พื้นที่ 300 ตรม.
+                                    - 5 นอน 3 น้ำ
+                                    - ที่จอดรถ 3 คัน</p>
+                                <h3 class="card-subtitle mb-2 text-muted">40,000,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal2">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house3.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">สายไหม, กรุงเทพ</h5>
+                                <p class="card-text">ขนาด 60 ตร.วา
+                                    - พื้นที่ 167 ตรม.
+                                    - ชนิด 4 ห้องนอน 3 ห้องน้ำ
+                                    - จำนวน 2 ชั้น</p>
+                                <h3 class="card-subtitle mb-2 text-muted">6,700,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal3">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house4.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">ลำผักชี, หนองจอก, กรุงเทพ</h5>
+                                <p class="card-text">ขนาด 66.5 ตร.วา
+                                    - พื้นที่ 208 ตรม.
+                                    - ชนิด 3 ห้องนอน 3 ห้องน้ำ
+                                    - จำนวน 2 ชั้น</p>
+                                <h3 class="card-subtitle mb-2 text-muted">5,400,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal4">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house5.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">ลำผักชี, หนองจอก, กรุงเทพ</h5>
+                                <p class="card-text">ขนาด 80.5 ตร.วา
+                                    - พื้นที่ 200 ตรม.
+                                    - ชนิด 3 ห้องนอน 3 ห้องน้ำ
+                                    - จำนวน 2 ชั้น</p>
+                                <h3 class="card-subtitle mb-2 text-muted">9,400,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal5">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="img/house6.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">สันมหาพน, แม่แตง, เชียงใหม่</h5>
+                                <p class="card-text">ขนาด 95 ตร.วา
+                                    - พื้นที่ 250 ตรม.
+                                    - ชนิด 3 ห้องนอน 3 ห้องน้ำ
+                                    - จำนวน 2 ชั้น</p>
+                                <h3 class="card-subtitle mb-2 text-muted">4,400,000 บาท</h3>
+                                <p class="card-text">______________________________________________</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            data-toggle="modal" data-target="#cal6">Calculate
+                                            Installment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="HouseList.html">Back to top</a>
+            </p>
+            <p>&copy;Copyrighted owned by Houser</p>
+            <p>Want more information? <a href="../../">Visit the homepage</a> or Contact Us At (+66)2410454</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+
+</html>
